@@ -63,14 +63,14 @@ function screenStart() {
   // Clouds: Movement
   screenStartClouds(xStCloud, yStCloud, sCloud);
   if (cloudDirection === "cloudRight") {
-    if (xStCloud < xMax + 30) {
+    if (xStCloud < xMax) {
       xStCloud += 0.3;
       yStCloud += 0.1;
     } else {
       cloudDirection = "cloudLeft";
     }
   } else if (cloudDirection === "cloudLeft") {
-    if (xStCloud > 570) {
+    if (xStCloud > 600) {
       xStCloud -= 0.3;
       yStCloud -= 0.1;
     } else {
@@ -79,7 +79,7 @@ function screenStart() {
   }
 
   // Welcome Text
-  text("click to start the game", x - 120 * s, y);
+  text("click to start the game", xMiddle - 120 * s, yMiddle);
 }
 
 // GAME SCREEN
@@ -158,15 +158,32 @@ function screenGame() {
   // Tree (Branches)
   fill("#452F12");
   beginShape();
-  vertex(90, 240);
-  bezierVertex(130, 90, 250, 50, 340, 30);
-  bezierVertex(130, 70, 230, 30, 25, 190);
+  vertex(126, 205);
+  bezierVertex(155, 105, 255, 65, 340, 30);
+  bezierVertex(155, 75, 170, 80, 65, 190);
   endShape();
 
   beginShape();
-  vertex(120, 125);
-  bezierVertex(52, 10, 152, 25, 182, 14);
-  bezierVertex(52, 70, 162, 5, 90, 140);
+  vertex(140, 145);
+  bezierVertex(130, 50, 170, 45, 225, 15);
+  bezierVertex(90, 40, 100, 95, 105, 136);
+  endShape();
+
+  beginShape();
+  vertex(125, 65);
+  bezierVertex(80, -25, 39, 21, -80, 20);
+  bezierVertex(32, 29, 74, 5, 108, 77);
+  endShape();
+
+  beginShape();
+  vertex(65, 195);
+  bezierVertex(67, 125, 39, 100, -150, 90);
+  bezierVertex(2, 59, 94, 45, 128, 170);
+  endShape();
+
+  beginShape();
+  vertex(47, 180);
+  bezierVertex();
   endShape();
 
   // Apple
