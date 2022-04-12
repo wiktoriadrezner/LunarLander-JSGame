@@ -69,8 +69,9 @@ function screenStart() {
 }
 
 // GAME SCREEN
+const ground = canvas.height - 50;
 const gravity = 0.2;
-let speed = 0;
+let speedApple = 1;
 let xGmApple = 185;
 let yGmApple = 100;
 let xGmCloud = canvas.width;
@@ -167,10 +168,14 @@ function screenGame() {
   bezierVertex(-38, 59, 54, 45, 75, 190);
   endShape();
 
+  // Ground
+  fill("#506C1B");
+  rect(0, ground, canvas.width, 50);
+
   // Apple
   function screenGameApple(xApple, yApple) {
     strokeWeight();
-    fill(207, 58, 64);
+    fill("#A71F0F");
     beginShape();
     vertex(xApple + 12, yApple);
     bezierVertex(
@@ -224,7 +229,6 @@ function screenGame() {
       yApple - 30
     );
     endShape();
-
     // Apple - Wings
     fill("#C7DCDC");
     stroke("#98290D");
@@ -279,25 +283,46 @@ function screenGame() {
   screenGameApple(65, 140);
   screenGameApple(255, 50);
   screenGameApple(xGmApple, yGmApple);
-  if (keyIsDown(38)) {
-    speed -= 0.6;
+  if (yGmApple < 0 || xGmApple < 0 || xGmApple > canvas.width) {
+    console.log("LOST");
+  } else if (yGmApple < ground - 20) {
+    if (keyIsDown(38)) {
+      speedApple -= 0.9;
+    }
+    if (keyIsDown(39)) {
+      xGmApple += 5;
+    }
+    if (keyIsDown(37)) {
+      xGmApple -= 5;
+    }
+    speedApple += gravity;
+    yGmApple += speedApple;
+    if (yGmApple >= ground - 20 && speedApple > 2) {
+      console.log("LOST");
+    } else if (yGmApple >= ground - 20 && speedApple <= 2) {
+      console.log("WON");
+    }
   }
-  if (keyIsDown(39)) {
-    xGmApple += 5;
-  }
-  if (keyIsDown(37)) {
-    xGmApple -= 5;
-  }
-  speed += gravity;
-  yGmApple += speed;
+
+  // Speed Counter
+  fill("#A71F0F");
+  rect(canvas.width - 255, 20, 240, 50);
+  textSize(15);
+  fill(255);
+  text("Your Apple's Speed:", canvas.width - 240, 50);
+  fill("#C7DCDC");
+  textSize(25);
+  text(Math.floor(speedApple * 100) / 100, canvas.width - 95, 53);
 }
 
 // RESULTS SCREEN
-function screenResults() {
+function screenResultsWin() {
   background(104, 155, 163);
   fill(255);
   text("Results of the Game", 50, 50);
 }
+
+function screenResultsLost() {}
 
 function draw() {
   screenGame();
