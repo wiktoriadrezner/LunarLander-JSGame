@@ -69,10 +69,13 @@ function screenStart() {
 }
 
 // GAME SCREEN
+const gravity = 0.2;
+let speed = 0;
+let xGmApple = 185;
+let yGmApple = 100;
 let xGmCloud = canvas.width;
 let yGmCloud = 20;
 let sCloud = 1;
-
 function screenGame() {
   background(104, 155, 163);
   /* 
@@ -208,6 +211,8 @@ function screenGame() {
     endShape();
     // Apple - Leaf
     fill("#506C1B");
+    stroke("#145E0E");
+    strokeWeight(2);
     beginShape();
     vertex(xApple + 2, yApple - 15);
     bezierVertex(
@@ -219,18 +224,72 @@ function screenGame() {
       yApple - 30
     );
     endShape();
-    // Apple - Wings
 
-    /*
-    ellipse(xGmApple, yGmApple, 40);
-    ellipse(xGmApple + 15, yGmApple, 45);
-    */
+    // Apple - Wings
+    fill("#C7DCDC");
+    stroke("#98290D");
+    strokeWeight(2);
+    beginShape();
+    vertex(xApple - 12, yApple - 3);
+    bezierVertex(
+      xApple - 14,
+      yApple + 6,
+      xApple - 42,
+      yApple - 2,
+      xApple - 34,
+      yApple - 15
+    );
+    endShape();
+    beginShape();
+    vertex(xApple - 12, yApple - 3);
+    bezierVertex(
+      xApple - 22,
+      yApple + 13,
+      xApple - 42,
+      yApple + 4,
+      xApple - 45,
+      yApple + 2
+    );
+    endShape();
+    beginShape();
+    vertex(xApple + 12, yApple - 3);
+    bezierVertex(
+      xApple + 14,
+      yApple + 6,
+      xApple + 42,
+      yApple - 2,
+      xApple + 34,
+      yApple - 15
+    );
+    endShape();
+    beginShape();
+    vertex(xApple + 12, yApple - 3);
+    bezierVertex(
+      xApple + 22,
+      yApple + 13,
+      xApple + 42,
+      yApple + 4,
+      xApple + 45,
+      yApple + 2
+    );
+    endShape();
   }
-  screenGameApple(185, 100);
-  screenGameApple(125, 60);
+  screenGameApple(125, 40);
   screenGameApple(35, 80);
   screenGameApple(65, 140);
-  screenGameApple(255, 40);
+  screenGameApple(255, 50);
+  screenGameApple(xGmApple, yGmApple);
+  if (keyIsDown(38)) {
+    speed -= 0.6;
+  }
+  if (keyIsDown(39)) {
+    xGmApple += 5;
+  }
+  if (keyIsDown(37)) {
+    xGmApple -= 5;
+  }
+  speed += gravity;
+  yGmApple += speed;
 }
 
 // RESULTS SCREEN
