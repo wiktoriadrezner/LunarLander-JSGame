@@ -1,24 +1,11 @@
-// VARIABLES
-let x = 0;
-let y = 0;
-let s = 1;
-
-let xMiddle = canvas.width / 2;
-let yMiddle = canvas.height / 2;
-let xMax = canvas.width;
-let yMax = canvas.height;
-
-let xStCloud = xMax;
-let yStCloud = 0;
-let xGmCloud = xMax;
-let yGmCloud = 30;
-let sCloud = 1;
+// FLYING APPLES GAME
 let cloudDirection = "cloudRight";
 
-background(255);
-textSize(25 * s);
-
 // WELCOME SCREEN
+let xStCloud = canvas.width;
+let yStCloud = 0;
+background(255);
+textSize(25);
 function screenStart() {
   background(104, 155, 163);
   strokeWeight();
@@ -27,43 +14,42 @@ function screenStart() {
   /* 
     Clouds: Design
     xStCloud, yStCloud — coordinates of x, y
-    sCloud — cloud's scale
   */
-  function screenStartClouds(xStCloud, yStCloud, sCloud) {
-    ellipse(xStCloud - 150 * sCloud, yStCloud + 80 * sCloud, 50 * sCloud);
-    ellipse(xStCloud - 110 * sCloud, yStCloud + 60 * sCloud, 60 * sCloud);
-    ellipse(xStCloud - 120 * sCloud, yStCloud + 100 * sCloud, 70 * sCloud);
-    ellipse(xStCloud - 70 * sCloud, yStCloud + 70 * sCloud, 75 * sCloud);
-    ellipse(xStCloud - 80 * sCloud, yStCloud + 100 * sCloud, 60 * sCloud);
+  function screenStartClouds(xStCloud, yStCloud) {
+    ellipse(xStCloud - 150, yStCloud + 80, 60);
+    ellipse(xStCloud - 110, yStCloud + 50, 70);
+    ellipse(xStCloud - 120, yStCloud + 110, 80);
+    ellipse(xStCloud - 70, yStCloud + 70, 85);
+    ellipse(xStCloud - 70, yStCloud + 110, 70);
 
-    ellipse(xStCloud - 190 * sCloud, yStCloud + 380 * sCloud, 70 * sCloud);
-    ellipse(xStCloud - 130 * sCloud, yStCloud + 380 * sCloud, 100 * sCloud);
-    ellipse(xStCloud - 150 * sCloud, yStCloud + 340 * sCloud, 90 * sCloud);
-    ellipse(xStCloud - 70 * sCloud, yStCloud + 340 * sCloud, 95 * sCloud);
-    ellipse(xStCloud - 80 * sCloud, yStCloud + 390 * sCloud, 70 * sCloud);
+    ellipse(xStCloud - 190, yStCloud + 380, 80);
+    ellipse(xStCloud - 130, yStCloud + 380, 110);
+    ellipse(xStCloud - 150, yStCloud + 340, 100);
+    ellipse(xStCloud - 70, yStCloud + 340, 105);
+    ellipse(xStCloud - 80, yStCloud + 390, 80);
 
-    ellipse(xStCloud - 400 * sCloud, yStCloud + 20 * sCloud, 70 * sCloud);
-    ellipse(xStCloud - 340 * sCloud, yStCloud + 0 * sCloud, 80 * sCloud);
-    ellipse(xStCloud - 360 * sCloud, yStCloud + 35 * sCloud, 90 * sCloud);
-    ellipse(xStCloud - 280 * sCloud, yStCloud + 10 * sCloud, 95 * sCloud);
-    ellipse(xStCloud - 310 * sCloud, yStCloud + 40 * sCloud, 80 * sCloud);
+    ellipse(xStCloud - 400, yStCloud + 20, 80);
+    ellipse(xStCloud - 340, yStCloud + 0, 90);
+    ellipse(xStCloud - 360, yStCloud + 35, 100);
+    ellipse(xStCloud - 280, yStCloud + 10, 105);
+    ellipse(xStCloud - 310, yStCloud + 40, 90);
 
-    ellipse(xStCloud - 590 * sCloud, yStCloud + 220 * sCloud, 80 * sCloud);
-    ellipse(xStCloud - 520 * sCloud, yStCloud + 200 * sCloud, 90 * sCloud);
-    ellipse(xStCloud - 560 * sCloud, yStCloud + 250 * sCloud, 70 * sCloud);
-    ellipse(xStCloud - 500 * sCloud, yStCloud + 260 * sCloud, 90 * sCloud);
+    ellipse(xStCloud - 590, yStCloud + 220, 90);
+    ellipse(xStCloud - 520, yStCloud + 200, 100);
+    ellipse(xStCloud - 560, yStCloud + 250, 80);
+    ellipse(xStCloud - 500, yStCloud + 260, 100);
 
-    ellipse(xStCloud - 480 * sCloud, yStCloud + 420 * sCloud, 80 * sCloud);
-    ellipse(xStCloud - 400 * sCloud, yStCloud + 430 * sCloud, 100 * sCloud);
-    ellipse(xStCloud - 450 * sCloud, yStCloud + 460 * sCloud, 70 * sCloud);
-    ellipse(xStCloud - 510 * sCloud, yStCloud + 470 * sCloud, 90 * sCloud);
-    ellipse(xStCloud - 450 * sCloud, yStCloud + 400 * sCloud, 70 * sCloud);
+    ellipse(xStCloud - 480, yStCloud + 420, 90);
+    ellipse(xStCloud - 400, yStCloud + 430, 110);
+    ellipse(xStCloud - 450, yStCloud + 460, 80);
+    ellipse(xStCloud - 510, yStCloud + 470, 100);
+    ellipse(xStCloud - 450, yStCloud + 400, 80);
   }
 
   // Clouds: Movement
-  screenStartClouds(xStCloud, yStCloud, sCloud);
+  screenStartClouds(xStCloud, yStCloud);
   if (cloudDirection === "cloudRight") {
-    if (xStCloud < xMax) {
+    if (xStCloud < canvas.width) {
       xStCloud += 0.3;
       yStCloud += 0.1;
     } else {
@@ -79,14 +65,17 @@ function screenStart() {
   }
 
   // Welcome Text
-  text("click to start the game", xMiddle - 120 * s, yMiddle);
+  text("click to start the game", 280, 230);
 }
 
 // GAME SCREEN
+let xGmCloud = canvas.width;
+let yGmCloud = 20;
+let sCloud = 1;
+let xGmApple = 250;
+let yGmApple = 90;
 function screenGame() {
-  // Sky
   background(104, 155, 163);
-
   /* 
     Clouds: Design
     xGmCloud, yGmCloud — coordinates of x, y
@@ -117,7 +106,7 @@ function screenGame() {
   // Clouds: Movement
   screenGameClouds(xGmCloud, yGmCloud, sCloud);
   if (cloudDirection === "cloudRight") {
-    if (xGmCloud < xMax + 100) {
+    if (xGmCloud < canvas.width + 100) {
       xGmCloud += 1;
       yGmCloud += 0.1;
       sCloud += 0.001;
@@ -137,64 +126,80 @@ function screenGame() {
   // Tree (Trunk)
   fill("#452F12");
   beginShape();
-  vertex(150, 580);
-  bezierVertex(90, 360, 90, 270, 150, 150);
-  bezierVertex(94, 215, 43, 215, 0, 150);
+  vertex(110, 580);
+  bezierVertex(50, 360, 50, 270, 110, 150);
+  bezierVertex(54, 215, 3, 215, -40, 150);
   bezierVertex(0, 0, 0, 0, 0, 580);
   endShape();
 
-  // Tree (Leaves)
+  // Tree (Lower Leaves)
   stroke("#143E09");
   strokeWeight();
-  let greenOne = color("#2F5426");
-
-  fill(greenOne);
-  ellipse(40, 170, 140);
-  ellipse(50, 30, 250);
-  ellipse(140, 145, 120);
-  ellipse(210, 80, 140);
-  ellipse(270, -10, 200);
+  fill("#2F5426");
+  ellipse(0, 130, 140);
+  ellipse(10, 30, 250);
+  ellipse(100, 145, 120);
+  ellipse(170, 80, 140);
+  ellipse(230, -10, 200);
 
   // Tree (Branches)
   fill("#452F12");
   beginShape();
-  vertex(126, 205);
-  bezierVertex(155, 105, 255, 65, 340, 30);
-  bezierVertex(155, 75, 170, 80, 65, 190);
+  vertex(86, 205);
+  bezierVertex(115, 105, 215, 65, 300, 30);
+  bezierVertex(115, 75, 130, 80, 25, 195);
   endShape();
-
   beginShape();
-  vertex(140, 145);
-  bezierVertex(130, 50, 170, 45, 225, 15);
-  bezierVertex(90, 40, 100, 95, 105, 136);
+  vertex(110, 145);
+  bezierVertex(90, 50, 130, 45, 185, 5);
+  bezierVertex(50, 40, 60, 95, 55, 156);
   endShape();
-
   beginShape();
-  vertex(125, 65);
-  bezierVertex(80, -25, 39, 21, -80, 20);
-  bezierVertex(32, 29, 74, 5, 108, 77);
+  vertex(85, 145);
+  bezierVertex(80, -25, -19, 21, -30, 10);
+  bezierVertex(-12, 29, 34, 5, 38, 107);
   endShape();
-
   beginShape();
-  vertex(65, 195);
-  bezierVertex(67, 125, 39, 100, -150, 90);
-  bezierVertex(2, 59, 94, 45, 128, 170);
-  endShape();
-
-  beginShape();
-  vertex(47, 180);
-  bezierVertex();
+  vertex(-35, 225);
+  bezierVertex(27, 125, -1, 100, -190, 90);
+  bezierVertex(-38, 59, 54, 45, 75, 190);
   endShape();
 
   // Apple
-  strokeWeight();
-  fill(207, 58, 64);
-  ellipse(290, 90, 40);
+  function screenGameApple() {
+    strokeWeight();
+    fill(207, 58, 64);
+    beginShape();
+    vertex(197, 100);
+    bezierVertex(190, 75, 170, 80, 168, 100);
+    bezierVertex(168, 120, 190, 125, 198, 100);
+    endShape();
+    beginShape();
+    vertex(207, 100);
+    bezierVertex(206, 75, 180, 80, 178, 100);
+    bezierVertex(178, 120, 206, 128, 207, 100);
+    endShape();
+    // Leaf
+    fill("#506C1B");
+    beginShape();
+    vertex(187, 85);
+    bezierVertex(177, 83, 187, 69, 195, 70);
+    endShape();
+    // Wings
+
+    /*
+    ellipse(xGmApple, yGmApple, 40);
+    ellipse(xGmApple + 15, yGmApple, 45);
+    */
+  }
+  screenGameApple();
 }
 
 // RESULTS SCREEN
 function screenResults() {
-  text("results", xMiddle - 45 * s, 50);
+  background(104, 155, 163);
+  fill(255);
+  text("Results of the Game", 50, 50);
 }
 
 function draw() {
@@ -202,7 +207,6 @@ function draw() {
 }
 
 let state = "start";
-let gameTime = 0;
 
 /*function draw() {
   if (state === "start") {
