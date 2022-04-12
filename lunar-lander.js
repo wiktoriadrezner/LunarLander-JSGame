@@ -72,8 +72,7 @@ function screenStart() {
 let xGmCloud = canvas.width;
 let yGmCloud = 20;
 let sCloud = 1;
-let xGmApple = 250;
-let yGmApple = 90;
+
 function screenGame() {
   background(104, 155, 163);
   /* 
@@ -123,7 +122,7 @@ function screenGame() {
     }
   }
 
-  // Tree (Trunk)
+  // Tree - Trunk
   fill("#452F12");
   beginShape();
   vertex(110, 580);
@@ -132,7 +131,7 @@ function screenGame() {
   bezierVertex(0, 0, 0, 0, 0, 580);
   endShape();
 
-  // Tree (Lower Leaves)
+  // Tree - Leaves
   stroke("#143E09");
   strokeWeight();
   fill("#2F5426");
@@ -142,7 +141,7 @@ function screenGame() {
   ellipse(170, 80, 140);
   ellipse(230, -10, 200);
 
-  // Tree (Branches)
+  // Tree - Branches
   fill("#452F12");
   beginShape();
   vertex(86, 205);
@@ -166,33 +165,72 @@ function screenGame() {
   endShape();
 
   // Apple
-  function screenGameApple() {
+  function screenGameApple(xApple, yApple) {
     strokeWeight();
     fill(207, 58, 64);
     beginShape();
-    vertex(197, 100);
-    bezierVertex(190, 75, 170, 80, 168, 100);
-    bezierVertex(168, 120, 190, 125, 198, 100);
+    vertex(xApple + 12, yApple);
+    bezierVertex(
+      xApple + 5,
+      yApple - 25,
+      xApple - 15,
+      yApple - 20,
+      xApple - 17,
+      yApple
+    );
+    bezierVertex(
+      xApple - 17,
+      yApple + 20,
+      xApple - 5,
+      yApple + 25,
+      xApple + 13,
+      yApple
+    );
     endShape();
     beginShape();
-    vertex(207, 100);
-    bezierVertex(206, 75, 180, 80, 178, 100);
-    bezierVertex(178, 120, 206, 128, 207, 100);
+    vertex(xApple + 22, yApple);
+    bezierVertex(
+      xApple + 21,
+      yApple - 25,
+      xApple - 5,
+      yApple - 20,
+      xApple - 7,
+      yApple
+    );
+    bezierVertex(
+      xApple - 7,
+      yApple + 20,
+      xApple + 21,
+      yApple + 28,
+      xApple + 22,
+      yApple
+    );
     endShape();
-    // Leaf
+    // Apple - Leaf
     fill("#506C1B");
     beginShape();
-    vertex(187, 85);
-    bezierVertex(177, 83, 187, 69, 195, 70);
+    vertex(xApple + 2, yApple - 15);
+    bezierVertex(
+      xApple - 8,
+      yApple - 17,
+      xApple + 2,
+      yApple - 31,
+      xApple + 10,
+      yApple - 30
+    );
     endShape();
-    // Wings
+    // Apple - Wings
 
     /*
     ellipse(xGmApple, yGmApple, 40);
     ellipse(xGmApple + 15, yGmApple, 45);
     */
   }
-  screenGameApple();
+  screenGameApple(185, 100);
+  screenGameApple(125, 60);
+  screenGameApple(35, 80);
+  screenGameApple(65, 140);
+  screenGameApple(255, 40);
 }
 
 // RESULTS SCREEN
