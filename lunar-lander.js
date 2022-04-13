@@ -386,7 +386,6 @@ function screenResultsWon() {
   text("Congrats! You won the game :)", 50, 100);
 
   // let xGmApple = 185; let yGmApple = 100;
-
   // Apple Graphic
   strokeWeight();
   fill("#A71F0F");
@@ -459,8 +458,6 @@ function mouseClicked() {
 }
 
 function draw() {
-  screenResultsWon();
-  /*
   if (state === "start") {
     screenStart();
   }
@@ -473,7 +470,6 @@ function draw() {
   if (state === "resultsLost") {
     screenResultsLost();
   }
-  */
 }
 
 /*function draw() {
