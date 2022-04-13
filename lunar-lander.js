@@ -358,8 +358,10 @@ function screenGame() {
     yGmApple += speedApple;
     if (yGmApple >= ground - 20 && speedApple > 2) {
       console.log("LOST");
+      state = "resultsLost";
     } else if (yGmApple >= ground - 20 && speedApple <= 2) {
       console.log("WON");
+      state = "resultsWon";
     }
   }
 
@@ -379,10 +381,71 @@ function screenGame() {
 function screenResultsWon() {
   background(104, 155, 163);
   fill(255);
-  text("Results of the Game", 50, 50);
+  textSize(35);
+  strokeWeight();
+  text("Congrats! You won the game :)", 50, 100);
+
+  // let xGmApple = 185; let yGmApple = 100;
+
+  // Apple Graphic
+  strokeWeight();
+  fill("#A71F0F");
+  beginShape();
+  vertex(xFinishApple + 12, yApple);
+  bezierVertex(
+    xFinishApple + 5,
+    yApple - 25,
+    xFinishApple - 15,
+    yApple - 20,
+    xFinishApple - 17,
+    yApple
+  );
+  bezierVertex(
+    xFinishApple - 17,
+    yApple + 20,
+    xApple - 5,
+    yApple + 25,
+    xApple + 13,
+    yApple
+  );
+  endShape();
+  beginShape();
+  vertex(xApple + 22, yApple);
+  bezierVertex(
+    xApple + 21,
+    yApple - 25,
+    xApple - 5,
+    yApple - 20,
+    xApple - 7,
+    yApple
+  );
+  bezierVertex(
+    xApple - 7,
+    yApple + 20,
+    xApple + 21,
+    yApple + 28,
+    xApple + 22,
+    yApple
+  );
+  endShape();
+  // Apple - Leaf
+  fill("#506C1B");
+  stroke("#145E0E");
+  strokeWeight(2);
+  beginShape();
+  vertex(xApple + 2, yApple - 15);
+  bezierVertex(
+    xApple - 8,
+    yApple - 17,
+    xApple + 2,
+    yApple - 31,
+    xApple + 10,
+    yApple - 30
+  );
+  endShape();
 }
 
-// Loosing Screen
+// Losing Screen
 function screenResultsLost() {}
 
 // CHANGING GAME SCREENS
@@ -396,6 +459,8 @@ function mouseClicked() {
 }
 
 function draw() {
+  screenResultsWon();
+  /*
   if (state === "start") {
     screenStart();
   }
@@ -408,6 +473,7 @@ function draw() {
   if (state === "resultsLost") {
     screenResultsLost();
   }
+  */
 }
 
 /*function draw() {
