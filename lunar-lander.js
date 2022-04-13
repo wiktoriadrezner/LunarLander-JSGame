@@ -5,7 +5,6 @@ let cloudDirection = "cloudRight";
 let xStCloud = canvas.width;
 let yStCloud = 0;
 background(255);
-textSize(25);
 function screenStart() {
   background(104, 155, 163);
   strokeWeight();
@@ -22,11 +21,11 @@ function screenStart() {
     ellipse(xStCloud - 70, yStCloud + 70, 85);
     ellipse(xStCloud - 70, yStCloud + 110, 70);
 
-    ellipse(xStCloud - 190, yStCloud + 380, 80);
-    ellipse(xStCloud - 130, yStCloud + 380, 110);
-    ellipse(xStCloud - 150, yStCloud + 340, 100);
-    ellipse(xStCloud - 70, yStCloud + 340, 105);
-    ellipse(xStCloud - 80, yStCloud + 390, 80);
+    ellipse(xStCloud - 190, yStCloud + 450, 80);
+    ellipse(xStCloud - 130, yStCloud + 450, 110);
+    ellipse(xStCloud - 150, yStCloud + 410, 100);
+    ellipse(xStCloud - 70, yStCloud + 410, 105);
+    ellipse(xStCloud - 80, yStCloud + 460, 80);
 
     ellipse(xStCloud - 400, yStCloud + 20, 80);
     ellipse(xStCloud - 340, yStCloud + 0, 90);
@@ -65,7 +64,19 @@ function screenStart() {
   }
 
   // Welcome Text
-  text("click to start the game", 280, 230);
+  textSize(25);
+  textStyle(NORMAL);
+  text("click to start the game", 280, 210);
+  textSize(15);
+  textStyle(BOLD);
+  text("Rules of the Game", 220, 235);
+  textStyle(ITALIC);
+  fill("#C7DCDC");
+  text("1. Land the apple safely on the ground.", 220, 255);
+  text("2. Control the flying apple with arrow keys.", 220, 275);
+  text("3. You win if you land an apple with a speed below 2.", 220, 295);
+  text("4. Yoo lose if you land an apple with a higher speed", 220, 315);
+  text("or an apple flies out of the game screen.", 237, 331);
 }
 
 // GAME SCREEN
@@ -173,7 +184,7 @@ function screenGame() {
   rect(0, ground, canvas.width, 50);
 
   // Apple
-  function screenGameApple(xApple, yApple) {
+  function screenGameApple(xApple, yApple, appleFly) {
     strokeWeight();
     fill("#A71F0F");
     beginShape();
@@ -233,58 +244,106 @@ function screenGame() {
     fill("#C7DCDC");
     stroke("#98290D");
     strokeWeight(2);
-    beginShape();
-    vertex(xApple - 12, yApple - 3);
-    bezierVertex(
-      xApple - 14,
-      yApple + 6,
-      xApple - 42,
-      yApple - 2,
-      xApple - 34,
-      yApple - 15
-    );
-    endShape();
-    beginShape();
-    vertex(xApple - 12, yApple - 3);
-    bezierVertex(
-      xApple - 22,
-      yApple + 13,
-      xApple - 42,
-      yApple + 4,
-      xApple - 45,
-      yApple + 2
-    );
-    endShape();
-    beginShape();
-    vertex(xApple + 12, yApple - 3);
-    bezierVertex(
-      xApple + 14,
-      yApple + 6,
-      xApple + 42,
-      yApple - 2,
-      xApple + 34,
-      yApple - 15
-    );
-    endShape();
-    beginShape();
-    vertex(xApple + 12, yApple - 3);
-    bezierVertex(
-      xApple + 22,
-      yApple + 13,
-      xApple + 42,
-      yApple + 4,
-      xApple + 45,
-      yApple + 2
-    );
-    endShape();
+    if (appleFly) {
+      beginShape();
+      vertex(xApple - 12, yApple + 3);
+      bezierVertex(
+        xApple - 14,
+        yApple - 6,
+        xApple - 42,
+        yApple + 2,
+        xApple - 34,
+        yApple + 15
+      );
+      endShape();
+      beginShape();
+      vertex(xApple - 12, yApple + 3);
+      bezierVertex(
+        xApple - 22,
+        yApple - 13,
+        xApple - 42,
+        yApple - 4,
+        xApple - 45,
+        yApple - 2
+      );
+      endShape();
+      beginShape();
+      vertex(xApple + 12, yApple + 3);
+      bezierVertex(
+        xApple + 14,
+        yApple - 6,
+        xApple + 42,
+        yApple + 2,
+        xApple + 34,
+        yApple + 15
+      );
+      endShape();
+      beginShape();
+      vertex(xApple + 12, yApple + 3);
+      bezierVertex(
+        xApple + 22,
+        yApple - 13,
+        xApple + 42,
+        yApple - 4,
+        xApple + 45,
+        yApple - 2
+      );
+      endShape();
+    } else {
+      beginShape();
+      vertex(xApple - 12, yApple - 3);
+      bezierVertex(
+        xApple - 14,
+        yApple + 6,
+        xApple - 42,
+        yApple - 2,
+        xApple - 34,
+        yApple - 15
+      );
+      endShape();
+      beginShape();
+      vertex(xApple - 12, yApple - 3);
+      bezierVertex(
+        xApple - 22,
+        yApple + 13,
+        xApple - 42,
+        yApple + 4,
+        xApple - 45,
+        yApple + 2
+      );
+      endShape();
+      beginShape();
+      vertex(xApple + 12, yApple - 3);
+      bezierVertex(
+        xApple + 14,
+        yApple + 6,
+        xApple + 42,
+        yApple - 2,
+        xApple + 34,
+        yApple - 15
+      );
+      endShape();
+      beginShape();
+      vertex(xApple + 12, yApple - 3);
+      bezierVertex(
+        xApple + 22,
+        yApple + 13,
+        xApple + 42,
+        yApple + 4,
+        xApple + 45,
+        yApple + 2
+      );
+      endShape();
+    }
   }
   screenGameApple(125, 40);
   screenGameApple(35, 80);
   screenGameApple(65, 140);
   screenGameApple(255, 50);
-  screenGameApple(xGmApple, yGmApple);
+  screenGameApple(xGmApple, yGmApple, keyIsDown(38));
   if (yGmApple < 0 || xGmApple < 0 || xGmApple > canvas.width) {
     console.log("LOST");
+    state = "resultsLost";
   } else if (yGmApple < ground - 20) {
     if (keyIsDown(38)) {
       speedApple -= 0.9;
@@ -316,19 +375,40 @@ function screenGame() {
 }
 
 // RESULTS SCREEN
-function screenResultsWin() {
+// Winning Screen
+function screenResultsWon() {
   background(104, 155, 163);
   fill(255);
   text("Results of the Game", 50, 50);
 }
 
+// Loosing Screen
 function screenResultsLost() {}
 
-function draw() {
-  screenGame();
+// CHANGING GAME SCREENS
+let state = "start";
+function mouseClicked() {
+  if (state === "start") {
+    state = "game";
+  } else if (state === "resultsWon") {
+    state = "game";
+  }
 }
 
-let state = "start";
+function draw() {
+  if (state === "start") {
+    screenStart();
+  }
+  if (state === "game") {
+    screenGame();
+  }
+  if (state === "resultsWon") {
+    screenResultsWon();
+  }
+  if (state === "resultsLost") {
+    screenResultsLost();
+  }
+}
 
 /*function draw() {
   if (state === "start") {
@@ -342,14 +422,6 @@ let state = "start";
     }
   } else if (state === "results") {
     screen3();
-  }
-}
-
-function mouseClicked() {
-  if (state === "start") {
-    state = "game";
-  } else if (state === "results") {
-    state = "game";
   }
 }
 */
