@@ -90,6 +90,7 @@ let yGmCloud = 20;
 let sCloud = 1;
 function screenGame() {
   background(104, 155, 163);
+
   /* 
     Clouds: Design
     xGmCloud, yGmCloud — coordinates of x, y
@@ -182,6 +183,30 @@ function screenGame() {
   fill("#506C1B");
   rect(0, ground, canvas.width, 50);
 
+  // Fence
+  fill("#745A3C");
+  rect(0, 380, 130, 15);
+  rect(0, 410, 130, 15);
+
+  rect(25, 365, 15, 82);
+  triangle(25, 365, 40, 365, 32.5, 355);
+  rect(95, 365, 15, 82);
+  triangle(95, 365, 110, 365, 102.5, 355);
+
+  rect(270, 380, 130, 15);
+  rect(270, 410, 130, 15);
+
+  rect(360, 365, 15, 82);
+  triangle(360, 365, 375, 365, 367.5, 355);
+  rect(295, 365, 15, 82);
+  triangle(295, 365, 310, 365, 302.5, 355);
+
+  rect(540, 380, 130, 15);
+  rect(540, 410, 130, 15);
+
+  rect(565, 365, 15, 82);
+  triangle(565, 365, 580, 365, 572.5, 355);
+
   // Apple
   function screenGameApple(xApple, yApple, appleFly) {
     strokeWeight();
@@ -201,26 +226,23 @@ function screenGame() {
       yApple + 20,
       xApple - 5,
       yApple + 25,
-      xApple + 13,
+      xApple + 15,
+      yApple - 1
+    );
+    bezierVertex(
+      xApple - 24,
+      yApple + 20,
+      xApple + 21,
+      yApple + 28,
+      xApple + 22,
       yApple
     );
-    endShape();
-    beginShape();
-    vertex(xApple + 22, yApple);
     bezierVertex(
       xApple + 21,
       yApple - 25,
       xApple - 5,
       yApple - 20,
       xApple - 7,
-      yApple
-    );
-    bezierVertex(
-      xApple - 7,
-      yApple + 20,
-      xApple + 21,
-      yApple + 28,
-      xApple + 22,
       yApple
     );
     endShape();
@@ -352,7 +374,7 @@ function screenGame() {
   screenGameApple(xGmApple, yGmApple, keyIsDown(38));
   if (yGmApple < 0 || xGmApple < 0 || xGmApple > canvas.width) {
     console.log("LOST");
-    state = "resultsLost";
+    state = "resultsLostFlewOut";
   } else if (yGmApple < ground - 20) {
     if (keyIsDown(38)) {
       speedApple -= 0.9;
@@ -367,7 +389,7 @@ function screenGame() {
     yGmApple += speedApple;
     if (yGmApple >= ground - 20 && speedApple > 2) {
       console.log("LOST");
-      state = "resultsLost";
+      state = "resultsLostSmashed";
     } else if (yGmApple >= ground - 20 && speedApple <= 2) {
       console.log("WON");
       state = "resultsWon";
@@ -407,8 +429,9 @@ function screenResultsWon() {
     //xFinishApple = Math.floor(Math.random() * canvas.width);
     //yFinishApple = Math.floor(Math.random() * canvas.height);
     // Apple's Fruit
-    strokeWeight();
+    strokeWeight(3);
     fill("#A71F0F");
+    stroke("#A71F0F");
     beginShape();
     vertex(xFinishApple + 12 * sFinishApple, yFinishApple);
     bezierVertex(
@@ -424,26 +447,23 @@ function screenResultsWon() {
       yFinishApple + 20 * sFinishApple,
       xFinishApple - 5 * sFinishApple,
       yFinishApple + 25 * sFinishApple,
-      xFinishApple + 13 * sFinishApple,
+      xFinishApple + 15 * sFinishApple,
+      yFinishApple - 1 * sFinishApple
+    );
+    bezierVertex(
+      xFinishApple - 24 * sFinishApple,
+      yFinishApple + 20 * sFinishApple,
+      xFinishApple + 21 * sFinishApple,
+      yFinishApple + 28 * sFinishApple,
+      xFinishApple + 22 * sFinishApple,
       yFinishApple
     );
-    endShape();
-    beginShape();
-    vertex(xFinishApple + 22 * sFinishApple, yFinishApple);
     bezierVertex(
       xFinishApple + 21 * sFinishApple,
       yFinishApple - 25 * sFinishApple,
       xFinishApple - 5 * sFinishApple,
       yFinishApple - 20 * sFinishApple,
       xFinishApple - 7 * sFinishApple,
-      yFinishApple
-    );
-    bezierVertex(
-      xFinishApple - 7 * sFinishApple,
-      yFinishApple + 20 * sFinishApple,
-      xFinishApple + 21 * sFinishApple,
-      yFinishApple + 28 * sFinishApple,
-      xFinishApple + 22 * sFinishApple,
       yFinishApple
     );
     endShape();
@@ -477,8 +497,55 @@ function screenResultsWon() {
   screenResultsWonApple(500, 310, 9.5);
 }
 
-// Losing Screen
-function screenResultsLost() {}
+// Losing Screen (Smashed Apple)
+function screenResultsLostSmashed() {
+  background(104, 155, 163);
+
+  // Smashed Apple
+  fill("#8A8410");
+  strokeWeight(10);
+  stroke("#676319");
+  ellipse(150, 50, 800);
+
+  // Text
+  strokeWeight();
+  fill("#46451F");
+  textSize(55);
+  textStyle(NORMAL);
+  text("You lost!", 47, 100);
+  textSize(35);
+  textStyle(ITALIC);
+  text("You smashed the apple :(", 30, 140);
+  fill("#D7D6C0");
+  textSize(20);
+  textStyle(ITALIC);
+  text("Click to try your chances once again", 135, 170);
+}
+
+// Losing Screen (Apple Flew Out)
+function screenResultsLostFlewOut() {
+  background(104, 155, 163);
+
+  // Smashed Apple
+  fill("#8A8410");
+  strokeWeight(10);
+  stroke("#676319");
+  ellipse(150, 50, 800);
+
+  // Text
+  strokeWeight();
+  fill("#46451F");
+  textSize(55);
+  textStyle(NORMAL);
+  text("You lost!", 47, 100);
+  textSize(35);
+  textStyle(ITALIC);
+  text("You left the game screen :(", 30, 140);
+  fill("#D7D6C0");
+  textSize(20);
+  textStyle(ITALIC);
+  text("Click to try your chances once again", 155, 170);
+}
 
 // CHANGING GAME SCREENS
 let state = "start";
@@ -486,12 +553,20 @@ function mouseClicked() {
   if (state === "start") {
     state = "game";
   } else if (state === "resultsWon") {
+    xGmApple = 185;
+    yGmApple = 100;
+    speedApple = 1;
+    state = "game";
+  } else if (state === "resultsLostSmashed" || state === "resultsLostFlewOut") {
+    xGmApple = 185;
+    yGmApple = 100;
+    speedApple = 1;
     state = "game";
   }
 }
 
 function draw() {
-  screenResultsWon();
+  screenGame();
   /*
   if (state === "start") {
     screenStart();
@@ -502,8 +577,11 @@ function draw() {
   if (state === "resultsWon") {
     screenResultsWon();
   }
-  if (state === "resultsLost") {
-    screenResultsLost();
+  if (state === "resultsLostSmashed") {
+    screenResultsLostSmashed();
+  }
+  if (state === "resultsLostFlewOut") {
+    screenResultsLostFlewOut();
   }
   */
 }
