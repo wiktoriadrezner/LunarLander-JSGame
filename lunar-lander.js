@@ -184,26 +184,24 @@ function screenGame() {
   rect(0, ground, canvas.width, 50);
 
   // Fence
-  fill("#745A3C");
-  rect(0, 380, 130, 15);
-  rect(0, 410, 130, 15);
-
+  // Left
+  fill("#6B4F2F");
+  rect(-10, 380, 140, 15, 5);
+  rect(-10, 410, 140, 15, 5);
   rect(25, 365, 15, 82);
   triangle(25, 365, 40, 365, 32.5, 355);
   rect(95, 365, 15, 82);
   triangle(95, 365, 110, 365, 102.5, 355);
-
-  rect(270, 380, 130, 15);
-  rect(270, 410, 130, 15);
-
+  // Middle
+  rect(270, 380, 130, 15, 5);
+  rect(270, 410, 130, 15, 5);
   rect(360, 365, 15, 82);
   triangle(360, 365, 375, 365, 367.5, 355);
   rect(295, 365, 15, 82);
   triangle(295, 365, 310, 365, 302.5, 355);
-
-  rect(540, 380, 130, 15);
-  rect(540, 410, 130, 15);
-
+  // Right
+  rect(540, 380, 130, 15, 5);
+  rect(540, 410, 130, 15, 5);
   rect(565, 365, 15, 82);
   triangle(565, 365, 580, 365, 572.5, 355);
 
@@ -373,7 +371,6 @@ function screenGame() {
   // Game Mechanics
   screenGameApple(xGmApple, yGmApple, keyIsDown(38));
   if (yGmApple < 0 || xGmApple < 0 || xGmApple > canvas.width) {
-    console.log("LOST");
     state = "resultsLostFlewOut";
   } else if (yGmApple < ground - 20) {
     if (keyIsDown(38)) {
@@ -387,12 +384,24 @@ function screenGame() {
     }
     speedApple += gravity;
     yGmApple += speedApple;
-    if (yGmApple >= ground - 20 && speedApple > 2) {
-      console.log("LOST");
+    if (
+      (xGmApple <= 135 && yGmApple >= 355) ||
+      (xGmApple >= 270 && (xGmApple <= 400) & (yGmApple >= 355)) ||
+      (xGmApple >= 540 && yGmApple >= 355)
+    ) {
       state = "resultsLostSmashed";
-    } else if (yGmApple >= ground - 20 && speedApple <= 2) {
-      console.log("WON");
-      state = "resultsWon";
+    } else if (yGmApple >= ground - 20 && xGmApple > 135 && xGmApple < 270) {
+      if (speedApple <= 2) {
+        state = "resultsWon";
+      } else {
+        state = "resultsLostSmashed";
+      }
+    } else if (yGmApple >= ground - 20 && xGmApple > 400 && xGmApple < 540) {
+      if (speedApple <= 2) {
+        state = "resultsWon";
+      } else {
+        state = "resultsLostSmashed";
+      }
     }
   }
 
@@ -566,8 +575,6 @@ function mouseClicked() {
 }
 
 function draw() {
-  screenGame();
-  /*
   if (state === "start") {
     screenStart();
   }
@@ -583,7 +590,6 @@ function draw() {
   if (state === "resultsLostFlewOut") {
     screenResultsLostFlewOut();
   }
-  */
 }
 
 /*function draw() {
