@@ -522,14 +522,14 @@ function screenResultsLostSmashed() {
   fill("#46451F");
   textSize(55);
   textStyle(NORMAL);
-  text("You lost!", 47, 100);
-  textSize(35);
+  text("Oh no, You lost!", 55, 100);
+  textSize(30);
   textStyle(ITALIC);
-  text("You smashed the apple :(", 30, 140);
+  text("You smashed the apple :(", 30, 135);
   fill("#D7D6C0");
   textSize(20);
   textStyle(ITALIC);
-  text("Click to try your chances once again", 135, 170);
+  text("Click to try your chances once again", 135, 165);
 }
 
 // Losing Screen (Apple Flew Out)
@@ -547,8 +547,8 @@ function screenResultsLostFlewOut() {
   fill("#46451F");
   textSize(55);
   textStyle(NORMAL);
-  text("You lost!", 47, 100);
-  textSize(35);
+  text("Hey, Looser!", 127, 100);
+  textSize(30);
   textStyle(ITALIC);
   text("You left the game screen :(", 30, 140);
   fill("#D7D6C0");
