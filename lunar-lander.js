@@ -137,7 +137,8 @@ function screenGame() {
     }
   }
 
-  // Tree - Trunk
+  // Tree
+  // Trunk
   fill("#452F12");
   beginShape();
   vertex(110, 580);
@@ -145,8 +146,7 @@ function screenGame() {
   bezierVertex(54, 215, 3, 215, -40, 150);
   bezierVertex(0, 0, 0, 0, 0, 580);
   endShape();
-
-  // Tree - Leaves
+  // Leaves
   stroke("#143E09");
   strokeWeight();
   fill("#2F5426");
@@ -155,8 +155,7 @@ function screenGame() {
   ellipse(100, 145, 120);
   ellipse(170, 80, 140);
   ellipse(230, -10, 200);
-
-  // Tree - Branches
+  // Branches
   fill("#452F12");
   beginShape();
   vertex(86, 205);
@@ -228,16 +227,24 @@ function screenGame() {
     // Apple - Leaf
     fill("#506C1B");
     stroke("#145E0E");
-    strokeWeight(2);
+    strokeWeight(1.2);
     beginShape();
-    vertex(xApple + 2, yApple - 15);
+    vertex(xApple + 2.5, yApple - 15.2);
     bezierVertex(
-      xApple - 8,
-      yApple - 17,
+      xApple - 5,
+      yApple - 19,
       xApple + 2,
       yApple - 31,
-      xApple + 10,
+      xApple + 9,
       yApple - 30
+    );
+    bezierVertex(
+      xApple + 12,
+      yApple - 20,
+      xApple - 2,
+      yApple - 20,
+      xApple + 2.3,
+      yApple - 15.2
     );
     endShape();
     // Apple - Wings
@@ -340,6 +347,8 @@ function screenGame() {
   screenGameApple(35, 80);
   screenGameApple(65, 140);
   screenGameApple(255, 50);
+
+  // Game Mechanics
   screenGameApple(xGmApple, yGmApple, keyIsDown(38));
   if (yGmApple < 0 || xGmApple < 0 || xGmApple > canvas.width) {
     console.log("LOST");
@@ -380,74 +389,92 @@ function screenGame() {
 // Winning Screen
 function screenResultsWon() {
   background(104, 155, 163);
-  fill(255);
-  textSize(35);
   strokeWeight();
-  text("Congrats! You won the game :)", 50, 100);
+  fill(255);
+  textSize(55);
+  textStyle(NORMAL);
+  text("Congrats!", 47, 100);
+  textSize(35);
+  textStyle(ITALIC);
+  text("You won the game :)", 30, 140);
+  fill("#C7DCDC");
+  textSize(20);
+  textStyle(ITALIC);
+  text("Click to play one more time", 135, 170);
 
-  xFinishApple = 185;
-  yFinishApple = 100;
   // Apple Graphic
-  function screenResultsWonApple() {
+  function screenResultsWonApple(xFinishApple, yFinishApple, sFinishApple) {
     //xFinishApple = Math.floor(Math.random() * canvas.width);
     //yFinishApple = Math.floor(Math.random() * canvas.height);
+    // Apple's Fruit
     strokeWeight();
     fill("#A71F0F");
     beginShape();
-    vertex(xFinishApple + 12, yFinishApple);
+    vertex(xFinishApple + 12 * sFinishApple, yFinishApple);
     bezierVertex(
-      xFinishApple + 5,
-      yFinishApple - 25,
-      xFinishApple - 15,
-      yFinishApple - 20,
-      xFinishApple - 17,
+      xFinishApple + 5 * sFinishApple,
+      yFinishApple - 25 * sFinishApple,
+      xFinishApple - 15 * sFinishApple,
+      yFinishApple - 20 * sFinishApple,
+      xFinishApple - 17 * sFinishApple,
       yFinishApple
     );
     bezierVertex(
-      xFinishApple - 17,
-      yFinishApple + 20,
-      xFinishApple - 5,
-      yFinishApple + 25,
-      xFinishApple + 13,
+      xFinishApple - 17 * sFinishApple,
+      yFinishApple + 20 * sFinishApple,
+      xFinishApple - 5 * sFinishApple,
+      yFinishApple + 25 * sFinishApple,
+      xFinishApple + 13 * sFinishApple,
       yFinishApple
     );
     endShape();
     beginShape();
-    vertex(xFinishApple + 22, yFinishApple);
+    vertex(xFinishApple + 22 * sFinishApple, yFinishApple);
     bezierVertex(
-      xFinishApple + 21,
-      yFinishApple - 25,
-      xFinishApple - 5,
-      yFinishApple - 20,
-      xFinishApple - 7,
+      xFinishApple + 21 * sFinishApple,
+      yFinishApple - 25 * sFinishApple,
+      xFinishApple - 5 * sFinishApple,
+      yFinishApple - 20 * sFinishApple,
+      xFinishApple - 7 * sFinishApple,
       yFinishApple
     );
     bezierVertex(
-      xFinishApple - 7,
-      yFinishApple + 20,
-      xFinishApple + 21,
-      yFinishApple + 28,
-      xFinishApple + 22,
+      xFinishApple - 7 * sFinishApple,
+      yFinishApple + 20 * sFinishApple,
+      xFinishApple + 21 * sFinishApple,
+      yFinishApple + 28 * sFinishApple,
+      xFinishApple + 22 * sFinishApple,
       yFinishApple
     );
     endShape();
-    // Apple - Leaf
+    // Apple's Leaf
     fill("#506C1B");
     stroke("#145E0E");
-    strokeWeight(2);
+    strokeWeight(2.5);
     beginShape();
-    vertex(xFinishApple + 2, yFinishApple - 15);
+    vertex(
+      xFinishApple + 2.5 * sFinishApple,
+      yFinishApple - 15.2 * sFinishApple
+    );
     bezierVertex(
-      xFinishApple - 8,
-      yFinishApple - 17,
-      xFinishApple + 2,
-      yFinishApple - 31,
-      xFinishApple + 10,
-      yFinishApple - 30
+      xFinishApple - 5 * sFinishApple,
+      yFinishApple - 19 * sFinishApple,
+      xFinishApple + 2 * sFinishApple,
+      yFinishApple - 31 * sFinishApple,
+      xFinishApple + 9 * sFinishApple,
+      yFinishApple - 30 * sFinishApple
+    );
+    bezierVertex(
+      xFinishApple + 12 * sFinishApple,
+      yFinishApple - 20 * sFinishApple,
+      xFinishApple - 2 * sFinishApple,
+      yFinishApple - 20 * sFinishApple,
+      xFinishApple + 2.3 * sFinishApple,
+      yFinishApple - 15.2 * sFinishApple
     );
     endShape();
   }
-  screenResultsWonApple();
+  screenResultsWonApple(500, 310, 9.5);
 }
 
 // Losing Screen
