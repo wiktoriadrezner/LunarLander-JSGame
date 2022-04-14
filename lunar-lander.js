@@ -385,63 +385,69 @@ function screenResultsWon() {
   strokeWeight();
   text("Congrats! You won the game :)", 50, 100);
 
-  // let xGmApple = 185; let yGmApple = 100;
+  xFinishApple = 185;
+  yFinishApple = 100;
   // Apple Graphic
-  strokeWeight();
-  fill("#A71F0F");
-  beginShape();
-  vertex(xFinishApple + 12, yApple);
-  bezierVertex(
-    xFinishApple + 5,
-    yApple - 25,
-    xFinishApple - 15,
-    yApple - 20,
-    xFinishApple - 17,
-    yApple
-  );
-  bezierVertex(
-    xFinishApple - 17,
-    yApple + 20,
-    xApple - 5,
-    yApple + 25,
-    xApple + 13,
-    yApple
-  );
-  endShape();
-  beginShape();
-  vertex(xApple + 22, yApple);
-  bezierVertex(
-    xApple + 21,
-    yApple - 25,
-    xApple - 5,
-    yApple - 20,
-    xApple - 7,
-    yApple
-  );
-  bezierVertex(
-    xApple - 7,
-    yApple + 20,
-    xApple + 21,
-    yApple + 28,
-    xApple + 22,
-    yApple
-  );
-  endShape();
-  // Apple - Leaf
-  fill("#506C1B");
-  stroke("#145E0E");
-  strokeWeight(2);
-  beginShape();
-  vertex(xApple + 2, yApple - 15);
-  bezierVertex(
-    xApple - 8,
-    yApple - 17,
-    xApple + 2,
-    yApple - 31,
-    xApple + 10,
-    yApple - 30
-  );
-  endShape();
+  function screenResultsWonApple() {
+    //xFinishApple = Math.floor(Math.random() * canvas.width);
+    //yFinishApple = Math.floor(Math.random() * canvas.height);
+    strokeWeight();
+    fill("#A71F0F");
+    beginShape();
+    vertex(xFinishApple + 12, yFinishApple);
+    bezierVertex(
+      xFinishApple + 5,
+      yFinishApple - 25,
+      xFinishApple - 15,
+      yFinishApple - 20,
+      xFinishApple - 17,
+      yFinishApple
+    );
+    bezierVertex(
+      xFinishApple - 17,
+      yFinishApple + 20,
+      xFinishApple - 5,
+      yFinishApple + 25,
+      xFinishApple + 13,
+      yFinishApple
+    );
+    endShape();
+    beginShape();
+    vertex(xFinishApple + 22, yFinishApple);
+    bezierVertex(
+      xFinishApple + 21,
+      yFinishApple - 25,
+      xFinishApple - 5,
+      yFinishApple - 20,
+      xFinishApple - 7,
+      yFinishApple
+    );
+    bezierVertex(
+      xFinishApple - 7,
+      yFinishApple + 20,
+      xFinishApple + 21,
+      yFinishApple + 28,
+      xFinishApple + 22,
+      yFinishApple
+    );
+    endShape();
+    // Apple - Leaf
+    fill("#506C1B");
+    stroke("#145E0E");
+    strokeWeight(2);
+    beginShape();
+    vertex(xFinishApple + 2, yFinishApple - 15);
+    bezierVertex(
+      xFinishApple - 8,
+      yFinishApple - 17,
+      xFinishApple + 2,
+      yFinishApple - 31,
+      xFinishApple + 10,
+      yFinishApple - 30
+    );
+    endShape();
+  }
+  screenResultsWonApple();
 }
 
 // Losing Screen
@@ -458,6 +464,8 @@ function mouseClicked() {
 }
 
 function draw() {
+  screenResultsWon();
+  /*
   if (state === "start") {
     screenStart();
   }
@@ -470,6 +478,7 @@ function draw() {
   if (state === "resultsLost") {
     screenResultsLost();
   }
+  */
 }
 
 /*function draw() {
