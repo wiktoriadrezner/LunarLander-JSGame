@@ -45,7 +45,7 @@ function screenStart() {
     ellipse(xStCloud - 450, yStCloud + 400, 80);
   }
 
-  // Clouds: Movement
+  // Movement of Clouds
   screenStartClouds(xStCloud, yStCloud);
   if (cloudDirection === "cloudRight") {
     if (xStCloud < canvas.width) {
@@ -66,17 +66,18 @@ function screenStart() {
   // Welcome Text
   textSize(25);
   textStyle(NORMAL);
-  text("click to start the game", 280, 210);
+  text("click to start the game", 280, 195);
   textSize(15);
   textStyle(BOLD);
-  text("Rules of the Game", 220, 235);
+  text("Rules of the Game", 220, 225);
   textStyle(ITALIC);
   fill("#C7DCDC");
-  text("1. Land the apple safely on the ground.", 220, 255);
-  text("2. Control the flying apple with arrow keys.", 220, 275);
-  text("3. You win if you land an apple with a speed below 2.", 220, 295);
-  text("4. Yoo lose if you land an apple with a higher speed", 220, 315);
-  text("or an apple flies out of the game screen.", 237, 331);
+  text("1. Land the apple safely on the ground.", 220, 245);
+  text("2. Control the flying apple with arrow keys.", 220, 265);
+  text("3. You win if you land an apple with a speed below 2.", 220, 285);
+  text("4. You lose if you land an apple with a higher speed", 220, 305);
+  text("or an apple flies out of the game screen.", 237, 321);
+  text("5. You lose if you crash an apple on the fence.", 220, 340);
 }
 
 // GAME SCREEN
@@ -591,19 +592,3 @@ function draw() {
     screenResultsLostFlewOut();
   }
 }
-
-/*function draw() {
-  if (state === "start") {
-    screen1();
-  } else if (state === "game") {
-    screen2();
-    gameTime += 1;
-    if (gameTime >= 100) {
-      gameTime = 0;
-      state = "results";
-    }
-  } else if (state === "results") {
-    screen3();
-  }
-}
-*/
