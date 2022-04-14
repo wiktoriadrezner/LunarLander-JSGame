@@ -375,13 +375,13 @@ function screenGame() {
     state = "resultsLostFlewOut";
   } else if (yGmApple < ground - 20) {
     if (keyIsDown(38)) {
-      speedApple -= 0.9;
+      speedApple -= 0.5;
     }
     if (keyIsDown(39)) {
-      xGmApple += 5;
+      xGmApple += speedApple;
     }
     if (keyIsDown(37)) {
-      xGmApple -= 5;
+      xGmApple -= speedApple;
     }
     speedApple += gravity;
     yGmApple += speedApple;
